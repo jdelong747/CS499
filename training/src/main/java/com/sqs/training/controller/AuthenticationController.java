@@ -1,21 +1,26 @@
 package com.sqs.training.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-public class AuthenticationController extends MultiActionController {
+import com.sqs.training.domain.User;
 
-	public ModelAndView authenticateUser(HttpServletRequest request,
-			HttpServletResponse response) {
-		return null;
+@Controller
+public class AuthenticationController {
+
+	@RequestMapping("/login")
+	public String displayLoginPage(Map<String, Object> model) {
+		User loginForm = new User();
+		model.put("loginForm",loginForm);
+		return "login";
 	}
 	
-	public ModelAndView displayLoginPage(HttpServletRequest request,
-			HttpServletResponse response) {
-		ModelAndView model = new ModelAndView("Login");
-		return model;
+	@RequestMapping("/loginUser")
+	public String registerUser(@ModelAttribute("loginForm") User user) {
+		System.out.println(user.getUserId() + " " + user.getPassword());
+		return "login";
 	}
 }

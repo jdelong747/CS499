@@ -4,14 +4,14 @@
   <groupId>com.sqs</groupId>
   <artifactId>training</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>training Maven Webapp</name>
+  <version>0.0.2-SNAPSHOT</version>
+  <name>training</name>
   <url>http://maven.apache.org</url>
   <properties>
-	<jdk.version>1.8</jdk.version>
-	<spring.version>2.5.6</spring.version>
-	<jstl.version>1.2</jstl.version>
-	<servletapi.version>2.5</servletapi.version>
+<!-- 	<jdk.version>1.7</jdk.version> -->
+<!-- 	<spring.version>4.1.6.RELEASE</spring.version> -->
+<!-- 	<jstl.version>1.2</jstl.version> -->
+<!-- 	<servletapi.version>2.5</servletapi.version> -->
 </properties>
   
   <dependencies>
@@ -21,30 +21,35 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    
-    <!-- Spring MVC framework -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-webmvc</artifactId>
-		<version>${spring.version}</version>
-	</dependency>
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>3.0-alpha-1</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-core</artifactId>
+    <version>3.1.2.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>3.1.2.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-beans</artifactId>
+    <version>3.1.2.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>3.1.2.RELEASE</version>
+</dependency>
 
-	<!-- JSTL -->
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>jstl</artifactId>
-		<version>${jstl.version}</version>
-	</dependency>
-
-	<!-- for compile only, your container should have this -->
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>servlet-api</artifactId>
-		<version>${servletapi.version}</version>
-		<scope>provided</scope>
-	</dependency>
   </dependencies>
   <build>
+  	<finalName>training</finalName>
     <plugins>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>

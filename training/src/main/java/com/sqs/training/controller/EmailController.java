@@ -1,31 +1,26 @@
 package com.sqs.training.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-public class EmailController extends MultiActionController {
+import com.sqs.training.domain.EmailSub;
 
-	public ModelAndView registerEmail(HttpServletRequest request,
-			HttpServletResponse response) {
-		return null;
+@Controller
+public class EmailController {
+
+	@RequestMapping("/subscribe")
+	public String displaySubscriptionPage(Map<String, Object> model) {
+		EmailSub emailForm = new EmailSub();
+		model.put("emailForm", emailForm);
+		return "subscribe";
 	}
 	
-	public ModelAndView displayEmailPage(HttpServletRequest request,
-			HttpServletResponse response) {
-		ModelAndView model = new ModelAndView("Subscribe");
-		return model;
-	}
-	
-	public ModelAndView unRegisterEmail(HttpServletRequest request,
-			HttpServletResponse response) {
-		return null;
-	}
-	
-	public ModelAndView sendEmail(HttpServletRequest request,
-			HttpServletResponse response) {
-		return null;
+	@RequestMapping("/subscribeEmail")
+	public String registerUser(@ModelAttribute("emailForm") EmailSub emailForm) {
+		System.out.println(emailForm.getEmail());
+		return "subscribe";
 	}
 }

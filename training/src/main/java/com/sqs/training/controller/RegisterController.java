@@ -1,21 +1,26 @@
 package com.sqs.training.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-public class RegisterController extends MultiActionController {
+import com.sqs.training.domain.User;
 
-	public ModelAndView registerUser(HttpServletRequest request,
-			HttpServletResponse response) {
-		return null;
+@Controller
+public class RegisterController {
+
+	@RequestMapping("/register")
+	public String displayRegisterPage(Map<String, Object> model) {
+		User registrationForm = new User();
+		model.put("registrationForm",registrationForm);
+		return "register";
 	}
 	
-	public ModelAndView displayRegisterPage(HttpServletRequest request,
-			HttpServletResponse response) {
-		ModelAndView model = new ModelAndView("Register");
-		return model;
+	@RequestMapping("/registerUser")
+	public String registerUser(@ModelAttribute("registrationForm") User user) {
+		System.out.println(user.getFirstName() + " " + user.getLastName());
+		return "register";
 	}
 } 
