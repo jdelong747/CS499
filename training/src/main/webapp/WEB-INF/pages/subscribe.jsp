@@ -6,7 +6,7 @@
 	<h2>This is where you subscribe to the email list</h2>
 	<a href="home">Home</a>
 	<form:form action="subscribeEmail" method="post" commandName="emailForm">
-		Email: <form:input path="email"/><br>
+		<form:input path="email" type="email" placeholder="Enter your email address"/><br>
 		<input type="submit" value="Subscribe"/>
 	</form:form>
 </body>

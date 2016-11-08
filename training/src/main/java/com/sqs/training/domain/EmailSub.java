@@ -1,5 +1,7 @@
 package com.sqs.training.domain;
 
+
+
 public class EmailSub {
 
 	private Integer id;

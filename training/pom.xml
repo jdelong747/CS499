@@ -29,23 +29,41 @@
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-core</artifactId>
-    <version>3.1.2.RELEASE</version>
+    <version>4.3.3.RELEASE</version>
 </dependency>
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-context</artifactId>
-    <version>3.1.2.RELEASE</version>
+    <version>4.3.3.RELEASE</version>
 </dependency>
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-beans</artifactId>
-    <version>3.1.2.RELEASE</version>
+    <version>4.3.3.RELEASE</version>
 </dependency>
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-webmvc</artifactId>
-    <version>3.1.2.RELEASE</version>
+    <version>4.3.3.RELEASE</version>
 </dependency>
+
+<!-- email subscription stuff -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>6.0.5</version>
+</dependency>
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-jdbc</artifactId>
+	<version>4.3.3.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>commons-validator</groupId>
+    <artifactId>commons-validator</artifactId>
+    <version>1.4.0</version>
+</dependency>
+<!-- end email subscription stuff -->
 
   </dependencies>
   <build>
