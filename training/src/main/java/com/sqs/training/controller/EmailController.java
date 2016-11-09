@@ -1,8 +1,8 @@
 package com.sqs.training.controller;
 
+import java.util.List;
 import java.util.Map;
 
-import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +22,24 @@ public class EmailController {
 
 	@RequestMapping("/subscribe")
 	public String displaySubscriptionPage(Map<String, Object> model) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmailSub.class);
-//		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("select * from EMAIL_SUB where id=1");
-		EmailSub emailForm = (EmailSub) criteria.uniqueResult();
+		EmailSub emailForm = new EmailSub();
 		model.put("emailForm", emailForm);
 		return "subscribe";
 	}
 	
 	@RequestMapping("/subscribeEmail")
 	public String registerUser(@ModelAttribute("emailForm") EmailSub emailForm) {
-		System.out.println(emailForm.getEmail());
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("insert into EMAIL_SUB (email) values ('" + emailForm.getEmail() + "')");
+		query.executeUpdate();
 		return "subscribe";
+	}
+	
+	@RequestMapping("/showEmails")
+	public String showEmail(Map<String, Object> model) {
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("select * from EMAIL_SUB");
+		query.addEntity(EmailSub.class);
+		List<EmailSub> emailSubs = query.list();
+		model.put("emails", emailSubs);
+		return "showEmails";
 	}
 }

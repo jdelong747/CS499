@@ -4,7 +4,8 @@
 <html>
 <body>
 	<h2>This is where you subscribe to the email list</h2>
-	<a href="home">Home</a>
+	<a href="home">Home</a><br>
+	<a href="showEmails">Show Emails</a>
 	<form:form action="subscribeEmail" method="post" commandName="emailForm">
 		Email: <form:input path="email"/><br>
 		<input type="submit" value="Subscribe"/>
