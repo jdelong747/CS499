@@ -24,10 +24,10 @@ public class AuthenticationController {
 	public String registerUser(@ModelAttribute("loginForm") User user, Map<String, Object> model,
 			HttpSession session) {
 		if ("test".equals(user.getUserId()) && "pass".equals(user.getPassword())) {
-			model.put("message", "Greetings ");
 			session.setAttribute("user", user);
 		} else {
-			model.put("message", "Incorrect credentials");
+			model.put("errorMessage", "Incorrect credentials");
+			return "login";
 		}
 		return "home";
 	}

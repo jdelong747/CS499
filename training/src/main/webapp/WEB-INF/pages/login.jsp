@@ -6,6 +6,7 @@
 <body>
 	<%@include file='toolbar.jsp'%>
 	<br>
+	${errorMessage}<br>
 	<form:form action="loginUser" method="post" commandName="loginForm">
 		<table>
 			<tr>
