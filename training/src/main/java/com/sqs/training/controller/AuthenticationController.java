@@ -29,15 +29,13 @@ public class AuthenticationController {
 		} else {
 			model.put("message", "Incorrect credentials");
 		}
-		return "login";
+		return "home";
 	}
 	
 	@RequestMapping("/logout")
 	public String logoutUser(Map<String, Object> model,
 			HttpSession session) {
 		session.removeAttribute("user");
-		User loginForm = new User();
-		model.put("loginForm",loginForm);
-		return "login";
+		return "home";
 	}
 }
