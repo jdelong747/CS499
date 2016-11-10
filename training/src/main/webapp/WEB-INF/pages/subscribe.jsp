@@ -17,5 +17,11 @@
 		<br>
 		<input type="submit" value="Subscribe" />
 	</form:form>
+	<br>
+	Emails in database
+	<br>
+	<c:forEach var="email" items="${emails}">
+		${email.email}<br>
+	</c:forEach>
 </body>
 </html>
