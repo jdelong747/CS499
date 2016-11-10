@@ -4,12 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <body>
-	<h2>This is where you subscribe to the email list</h2>
-	<a href="home">Home</a><br>
-	<a href="showEmails">Show Emails</a>
-	<form:form action="subscribeEmail" method="post" commandName="emailForm">
-		Email: <form:input path="email"/><br>
-		<input type="submit" value="Subscribe"/>
 	<%@include file='toolbar.jsp'%>
 	<br>
 	<form:form action="subscribeEmail" method="post"
@@ -23,6 +17,11 @@
 		<br>
 		<input type="submit" value="Subscribe" />
 	</form:form>
-	<a href="showEmails">Show Emails</a>
+	<br>
+	Emails in database
+	<br>
+	<c:forEach var="email" items="${emails}">
+		${email.email}<br>
+	</c:forEach>
 </body>
 </html>
