@@ -1,5 +1,6 @@
 package com.sqs.training.controller;
 
+import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
@@ -33,9 +34,9 @@ public class EmailController {
 	
 	@RequestMapping("/subscribeEmail")
 	public String registerUser(@ModelAttribute("emailForm") EmailSub emailForm,
-			Map<String, Object> model) {
-		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("insert into EMAIL_SUB (email) values ('" + emailForm.getEmail() + "')");
-		query.executeUpdate();
+			Map<String, Object> model) throws Exception {
+		Statement statement = sessionFactory.getCurrentSession().connection().createStatement();
+		statement.executeQuery("insert into EMAIL_SUB (email) values ('" + emailForm.getEmail() + "')");
 		SQLQuery allEmailQuery = sessionFactory.getCurrentSession().createSQLQuery("select * from EMAIL_SUB");
 		allEmailQuery.addEntity(EmailSub.class);
 		List<EmailSub> emailSubs = allEmailQuery.list();
