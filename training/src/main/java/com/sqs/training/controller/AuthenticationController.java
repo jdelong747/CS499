@@ -21,7 +21,7 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping("/loginUser")
-	public String registerUser(@ModelAttribute("loginForm") User user, Map<String, Object> model,
+	public String loginUser(@ModelAttribute("loginForm") User user, Map<String, Object> model,
 			HttpSession session) {
 		if ("test".equals(user.getUserId()) && "pass".equals(user.getPassword())) {
 			session.setAttribute("user", user);

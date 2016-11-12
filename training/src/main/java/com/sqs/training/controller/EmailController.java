@@ -32,7 +32,7 @@ public class EmailController {
 	}
 	
 	@RequestMapping("/subscribeEmail")
-	public String registerUser(@ModelAttribute("emailForm") EmailSub emailForm,
+	public String subscribeEmail(@ModelAttribute("emailForm") EmailSub emailForm,
 			Map<String, Object> model) {
 		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("insert into EMAIL_SUB (email) values ('" + emailForm.getEmail() + "')");
 		query.executeUpdate();
