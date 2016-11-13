@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+>>>>>>> upstream/master
 <html>
 <head>
 	<spring:url value="/resources/css/base.css" var="baseCss" />
@@ -12,6 +18,7 @@
 	<title>SQS Training - Home</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<div id="mainContainer" class="main-container">
 		<div id="logoContainer" class="logo-container column-container">
 			<img src="${images}logo.png" alt="SQS Logo" class="logo"/>
@@ -35,5 +42,8 @@
 			</div>
 		</div>
 	</div>
+=======
+	<%@include file='toolbar.jsp'%>
+>>>>>>> upstream/master
 </body>
 </html>

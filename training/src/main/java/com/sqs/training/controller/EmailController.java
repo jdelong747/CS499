@@ -1,5 +1,6 @@
 package com.sqs.training.controller;
 
+<<<<<<< HEAD
 import java.util.Arrays;
 import java.util.Map;
 
@@ -12,13 +13,23 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+=======
+import java.util.List;
+import java.util.Map;
+
+import org.hibernate.SQLQuery;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> upstream/master
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sqs.training.domain.EmailSub;
 
 @Controller
+<<<<<<< HEAD
 public class EmailController {	
 	/* Members */
 	private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
@@ -65,14 +76,27 @@ public class EmailController {
 	}
 	
 	/* Site Mapping */
+=======
+@Transactional
+public class EmailController {
+	
+	@Autowired
+	SessionFactory sessionFactory;
+
+>>>>>>> upstream/master
 	@RequestMapping("/subscribe")
 	public String displaySubscriptionPage(Map<String, Object> model) {
 		EmailSub emailForm = new EmailSub();
 		model.put("emailForm", emailForm);
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("select * from EMAIL_SUB");
+		query.addEntity(EmailSub.class);
+		List<EmailSub> emailSubs = query.list();
+		model.put("emails", emailSubs);
 		return "subscribe";
 	}
 	
 	@RequestMapping("/subscribeEmail")
+<<<<<<< HEAD
 	public String registerUser(@ModelAttribute("emailForm") EmailSub emailForm) {
 		String email = emailForm.getEmail();
 		String textOutput;
@@ -87,6 +111,16 @@ public class EmailController {
 		}
 		System.out.println(textOutput);
 		
+=======
+	public String registerUser(@ModelAttribute("emailForm") EmailSub emailForm,
+			Map<String, Object> model) {
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("insert into EMAIL_SUB (email) values ('" + emailForm.getEmail() + "')");
+		query.executeUpdate();
+		SQLQuery allEmailQuery = sessionFactory.getCurrentSession().createSQLQuery("select * from EMAIL_SUB");
+		allEmailQuery.addEntity(EmailSub.class);
+		List<EmailSub> emailSubs = allEmailQuery.list();
+		model.put("emails", emailSubs);
+>>>>>>> upstream/master
 		return "subscribe";
 	}
 	

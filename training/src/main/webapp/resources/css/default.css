@@ -1,0 +1,25 @@
+.toolbar {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+    overflow: hidden;
+}
+
+.toolbar li {
+	float: left;
+}
+
+.toolbar li a {
+	display: block;
+	padding: 5px 5px;
+	color: black;	
+}
+
+.toolbar li a:hover {
+	background-color: lightgreen;
+} 
+
+.center {
+	text-align: center;
+}
