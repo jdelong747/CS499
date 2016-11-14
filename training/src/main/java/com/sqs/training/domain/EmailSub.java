@@ -1,9 +1,5 @@
 package com.sqs.training.domain;
 
-<<<<<<< HEAD
-
-
-=======
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +9,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EMAIL_SUB")
->>>>>>> upstream/master
 public class EmailSub {
 
 	@Id

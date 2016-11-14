@@ -1,8 +1,5 @@
-.text-container {
-
-}
-
-.subscribe-container {
+.register-user {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

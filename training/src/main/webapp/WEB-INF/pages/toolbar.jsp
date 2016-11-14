@@ -3,30 +3,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" 
+	href='<c:url value="resources/css/base.css"/>'>
 <link rel="stylesheet" type="text/css"
-	href='<c:url value="resources/css/default.css"/>'>
+	href='<c:url value="resources/css/toolbar.css"/>'>
 </head>
 <body>
 	<c:choose>
 		<c:when test="${user != null}">
-			<h2 class="center">Welcome ${user.userId}</h2>
+			<div class="greetingContainer">Welcome ${user.userId}</div>
 		</c:when>
 		<c:otherwise>
-			<h2 class="center">Welcome To The SQS Training Website</h2>
+			<!--<h2 class="center">Welcome To The SQS Training Website</h2>-->
 		</c:otherwise>
 	</c:choose>
-	<ul class="toolbar">
-		<li><a href="home">Home</a></li>
-		<li><a href="subscribe">Subscribe</a></li>
-		<c:choose>
-			<c:when test="${user != null}">
-				<li><a href="logout">Logout</a></li>
-			</c:when>
-			<c:otherwise>
-				<li><a href="register">Register</a></li>
-				<li><a href="login">Login</a></li>
-			</c:otherwise>
-		</c:choose>
-	</ul>
+	<div class="toolbar-container column-container">
+		<ul class="toolbar">
+			<li><a href="http://www.sqs.com">SQS</a></li>
+			<li><a href="home">Home</a></li>
+			<li><a href="subscribe">Subscribe</a></li>
+			<c:choose>
+				<c:when test="${user != null}">
+					<li><a href="logout">Logout</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="register">Register</a></li>
+					<li><a href="login">Login</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+	</div>
 </body>
 </html>
