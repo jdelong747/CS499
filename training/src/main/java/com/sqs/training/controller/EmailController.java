@@ -42,4 +42,11 @@ public class EmailController {
 		model.put("emails", emailSubs);
 		return "subscribe";
 	}
+	
+	/*
+	@RequestMapping("/unsubscribe")
+	public String unregisterUser(@ModelAttribute("emailForm") EmailSub emailForm) {
+		return "unsubscribe";
+	}
+	*/
 }
