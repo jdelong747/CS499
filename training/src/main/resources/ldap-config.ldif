@@ -6,8 +6,6 @@ ou: people
 dn: uid=test,dc=sqs,dc=test
 objectclass: top
 objectclass: person
-objectclass: organizationalPerson
-objectclass: inetOrgPerson
 cn: Test User
 sn: Test
 uid: Test

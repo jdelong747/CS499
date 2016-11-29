@@ -9,14 +9,6 @@
 	href='<c:url value="resources/css/toolbar.css"/>'>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${user != null}">
-			<div class="greetingContainer">Welcome ${user.userId}</div>
-		</c:when>
-		<c:otherwise>
-			<!--<h2 class="center">Welcome To The SQS Training Website</h2>-->
-		</c:otherwise>
-	</c:choose>
 	<div class="toolbar-container column-container">
 		<ul class="toolbar">
 			<li><a href="http://www.sqs.com">SQS</a></li>
