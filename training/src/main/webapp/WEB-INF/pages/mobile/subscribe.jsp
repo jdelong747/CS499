@@ -19,7 +19,7 @@
 		<%@include file='toolbar.jsp'%>
 		<%@include file='header.jsp'%>
 		<div id="contentContainer" class="content-container column-container">
-			<div id="textContainer" class="text-container column-container">
+			<div id="textContainer" class="text-container column-container med-font">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultrices elit eu mauris mollis mattis. Quisque id neque placerat, maximus magna pharetra, aliquet libero. Proin elit tortor, ullamcorper vel elementum eu, blandit sed augue.
 			</div>
 			<form:form action="subscribeEmail" method="post" commandName="emailForm" class="subscribe-email column-container">
@@ -27,26 +27,19 @@
 					<form:input path="email" placeholder="Enter your email address." class="text-input column-container"/>
 				</div>
 				<div>	<!-- This div just fixes a flexbox scaling issue where the submit button is HUGE -->
-					<input type="submit" value="Subscribe" class="raised-button column-container med-font"/>
+					<input type="submit" value="Subscribe to our email list" class="raised-button column-container med-font"/>
 				</div>
 			</form:form>
-
+			<br>
 			<!-- phone number subscription is pretty much identical to email subscription -->
 			<form:form action="subscribePhoneNumber" method="post" commandName="phoneNumberForm" class="subscribe-email column-container">
 				<div class="text-input-container">	<!-- This div undoes the scaling fix below (otherwise the text input field is too small. -->
 					<form:input path="phoneNumber" placeholder="Enter your phone number." class="text-input column-container"/>
 				</div>
 				<div>	<!-- This div just fixes a flexbox scaling issue where the submit button is HUGE -->
-					<input type="submit" value="Subscribe" class="raised-button column-container med-font"/>
+					<input type="submit" value="Subscribe to receive text notifications" class="raised-button column-container med-font"/>
 				</div>
 			</form:form>
-
-			<!-- obviously needs the final variable names -->
-			Debug: Phone numbers in database
-			<br>
-			<c:forEach var="phoneNumber" items="${phoneNumbers}">
-				${phoneNumber.phoneNumber}<br>
-			</c:forEach>
 		</div>
 	</div>
 </body>

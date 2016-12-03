@@ -17,8 +17,9 @@
 }
 
 .toolbar li {
-	display: inline;
+	display: inline-block;
 	vertical-align: middle;
+	height: 100%;
 }
 
 .toolbar li a {
@@ -26,6 +27,7 @@
 	color: var(--near-bg-color);
 	padding: 5px 10px;
 	display: inline-block;
+	height: 100%;
 	transition-duration: 0.25s;
 }
 
