@@ -2,12 +2,15 @@ package com.sqs.training.controller;
 
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.core.DirContextAdapter;
 import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sqs.training.domain.User;
 
@@ -34,5 +37,18 @@ public class RegisterController {
 		context.setAttributeValue("userPassword", user.getPassword());
 		ldapTemplate.bind(context);
 		return "home";
+	}
+	
+	@RequestMapping("/device")
+	public @ResponseBody String detectDevice(String id, Device device) {
+		String deviceType = "unknown";
+		if (device.isNormal()) {
+			deviceType = "normal";
+		} else if (device.isMobile()) {
+			deviceType = "mobile";
+		} else if (device.isTablet()) {
+			deviceType = "tablet";
+		}
+		return deviceType; 
 	}
 } 

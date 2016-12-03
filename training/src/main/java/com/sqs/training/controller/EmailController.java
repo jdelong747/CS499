@@ -3,6 +3,7 @@ package com.sqs.training.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.mobile.device.Device;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sqs.training.domain.EmailSub;
 
@@ -43,6 +45,18 @@ public class EmailController {
 		return "subscribe";
 	}
 	
+	@RequestMapping("/device")
+	public @ResponseBody String detectDevice(String id, Device device) {
+		String deviceType = "unknown";
+		if (device.isNormal()) {
+			deviceType = "normal";
+		} else if (device.isMobile()) {
+			deviceType = "mobile";
+		} else if (device.isTablet()) {
+			deviceType = "tablet";
+		}
+		return deviceType; 
+	}
 	/*
 	@RequestMapping("/unsubscribe")
 	public String unregisterUser(@ModelAttribute("emailForm") EmailSub emailForm) {
