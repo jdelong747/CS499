@@ -5,6 +5,10 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.mobile.device.Device;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +18,9 @@ import com.sqs.training.domain.User;
 
 @Controller
 public class AuthenticationController {
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	@RequestMapping("/login")
 	public String displayLoginPage(Map<String, Object> model) {
@@ -25,7 +32,9 @@ public class AuthenticationController {
 	@RequestMapping("/loginUser")
 	public String registerUser(@ModelAttribute("loginForm") User user, Map<String, Object> model,
 			HttpSession session) {
-		if ("test".equals(user.getUserId()) && "pass".equals(user.getPassword())) {
+		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUserId(), user.getPassword());
+		Authentication checkAuth = authenticationManager.authenticate(authentication);
+		if (checkAuth.isAuthenticated()) {
 			session.setAttribute("user", user);
 		} else {
 			model.put("errorMessage", "Incorrect credentials");
