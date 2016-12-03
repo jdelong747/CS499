@@ -1,0 +1,46 @@
+/* resources/css/base.css should already be linked */
+
+.toolbar-container {
+	background-color: var(--sqs-green);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.toolbar {
+	color: var(--near-bg-color);
+	list-style-type: none;
+    overflow: hidden;
+    padding: 16px;
+    margin: 0;
+    height: 84px;
+}
+
+.toolbar li {
+	height: 100%;
+	display: inline;
+	vertical-align: middle;
+}
+
+.toolbar li a {
+	text-decoration: none;
+	color: var(--near-bg-color);
+	padding: 5px 10px;
+	display: inline-block;
+	transition-duration: 0.25s;
+}
+
+.toolbar li a:hover {
+	background-color: var(--sqs-blue);
+} 
+
+.center {
+	text-align: center;
+}
+
+.toolbar li .current-page {
+	font-weight: bold;
+}
