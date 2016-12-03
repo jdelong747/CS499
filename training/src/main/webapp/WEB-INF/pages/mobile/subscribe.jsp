@@ -44,7 +44,7 @@
 			<!-- obviously needs the final variable names -->
 			Debug: Phone numbers in database
 			<br>
-			<c:forEach var="phoneNumber" items="${phoneNumber}">
+			<c:forEach var="phoneNumber" items="${phoneNumbers}">
 				${phoneNumber.phoneNumber}<br>
 			</c:forEach>
 		</div>

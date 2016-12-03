@@ -3,64 +3,81 @@ package com.sqs.training.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.mobile.device.Device;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sqs.training.domain.EmailSub;
+import com.sqs.training.domain.PhoneNumberSub;
 
 @Controller
 @Transactional
-public class EmailController {
+public class SubscriptionController {
 	
 	@Autowired
 	SessionFactory sessionFactory;
 
 	@RequestMapping("/subscribe")
-	public String displaySubscriptionPage(Map<String, Object> model) {
+	public String displaySubscriptionPage(Map<String, Object> model, Device device) {
 		EmailSub emailForm = new EmailSub();
 		model.put("emailForm", emailForm);
+		databaseDebug(model);
+		if (device.isMobile()) {
+			PhoneNumberSub phoneNumberForm = new PhoneNumberSub();
+			model.put("phoneNumberForm", phoneNumberForm);
+			return "mobile/subscribe";
+		} else {
+			return "subscribe";
+		}
+	}
+	
+	@RequestMapping("/subscribeEmail")
+	public String subscribeEmail(@ModelAttribute("emailForm") EmailSub emailForm,
+			Map<String, Object> model, Device device) {
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("insert into EMAIL_SUB (email) values ('" + emailForm.getEmail() + "')");
+		query.executeUpdate();
+		databaseDebug(model);
+		EmailSub newEmailForm = new EmailSub();
+		model.put("emailForm", newEmailForm);
+		if (device.isMobile()) {
+			PhoneNumberSub newPhoneNumberForm = new PhoneNumberSub();
+			model.put("phoneNumberForm", newPhoneNumberForm);
+			return "mobile/subscribe";
+		} else {
+			return "subscribe";
+		}
+	}
+	
+	@RequestMapping("/subscribePhoneNumber")
+	public String subscribePhoneNumber(@ModelAttribute("phoneNumberForm") PhoneNumberSub phoneNumberForm,
+			Map<String, Object> model, Device device) {
+		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("insert into PHONE_SUB (phone_number) values ('" + phoneNumberForm.getPhoneNumber() + "')");
+		query.executeUpdate();
+		databaseDebug(model);
+		EmailSub newEmailForm = new EmailSub();
+		model.put("emailForm", newEmailForm);
+		if (device.isMobile()) {
+			PhoneNumberSub newPhoneNumberForm = new PhoneNumberSub();
+			model.put("phoneNumberForm", newPhoneNumberForm);
+			return "mobile/subscribe";
+		} else {
+			return "subscribe";
+		}
+	}
+	
+	private void databaseDebug(Map<String, Object> model) {
 		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("select * from EMAIL_SUB");
 		query.addEntity(EmailSub.class);
 		List<EmailSub> emailSubs = query.list();
 		model.put("emails", emailSubs);
-		return "subscribe";
+		SQLQuery phoneQuery = sessionFactory.getCurrentSession().createSQLQuery("select * from PHONE_SUB");
+		phoneQuery.addEntity(PhoneNumberSub.class);
+		List<PhoneNumberSub> phoneSubs = phoneQuery.list();
+		model.put("phoneNumbers", phoneSubs);
 	}
-	
-	@RequestMapping("/subscribeEmail")
-	public String registerUser(@ModelAttribute("emailForm") EmailSub emailForm,
-			Map<String, Object> model) {
-		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("insert into EMAIL_SUB (email) values ('" + emailForm.getEmail() + "')");
-		query.executeUpdate();
-		SQLQuery allEmailQuery = sessionFactory.getCurrentSession().createSQLQuery("select * from EMAIL_SUB");
-		allEmailQuery.addEntity(EmailSub.class);
-		List<EmailSub> emailSubs = allEmailQuery.list();
-		model.put("emails", emailSubs);
-		return "subscribe";
-	}
-	
-	@RequestMapping("/device")
-	public @ResponseBody String detectDevice(String id, Device device) {
-		String deviceType = "unknown";
-		if (device.isNormal()) {
-			deviceType = "normal";
-		} else if (device.isMobile()) {
-			deviceType = "mobile";
-		} else if (device.isTablet()) {
-			deviceType = "tablet";
-		}
-		return deviceType; 
-	}
-	/*
-	@RequestMapping("/unsubscribe")
-	public String unregisterUser(@ModelAttribute("emailForm") EmailSub emailForm) {
-		return "unsubscribe";
-	}
-	*/
 }
