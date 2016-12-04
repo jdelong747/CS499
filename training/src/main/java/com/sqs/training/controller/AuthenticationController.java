@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mobile.device.Device;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,46 +21,30 @@ public class AuthenticationController {
 	private AuthenticationManager authenticationManager;
 
 	@RequestMapping("/login")
-	public String displayLoginPage(Map<String, Object> model, Device device) {
+	public String displayLoginPage(Map<String, Object> model) {
 		User loginForm = new User();
 		model.put("loginForm",loginForm);
-		if (device.isMobile()) {
-			return "mobile/login";
-		} else {
-			return "login";
-		}
+		return "login";
 	}
 	
 	@RequestMapping("/loginUser")
 	public String registerUser(@ModelAttribute("loginForm") User user, Map<String, Object> model,
-			HttpSession session, Device device) {
+			HttpSession session) {
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUserId(), user.getPassword());
 		Authentication checkAuth = authenticationManager.authenticate(authentication);
 		if (checkAuth.isAuthenticated()) {
 			session.setAttribute("user", user);
 		} else {
 			model.put("errorMessage", "Incorrect credentials");
-			if (device.isMobile()) {
-				return "mobile/login";
-			} else {
-				return "login";
-			}
+			return "login";
 		}
-		if (device.isMobile()) {
-			return "mobile/home";
-		} else {
-			return "home";
-		}
+		return "home";
 	}
 	
 	@RequestMapping("/logout")
 	public String logoutUser(Map<String, Object> model,
-			HttpSession session, Device device) {
+			HttpSession session) {
 		session.removeAttribute("user");
-		if (device.isMobile()) {
-			return "mobile/home";
-		} else {
-			return "home";
-		}
+		return "home";
 	}
 }
