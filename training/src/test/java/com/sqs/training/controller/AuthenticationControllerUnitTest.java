@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpSession;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,11 +27,9 @@ public class AuthenticationControllerUnitTest {
 	private String userSessionAttribute = "user";
 	private String loginFormModelAttribute = "loginForm";
 	private String correctUserId = "test";
-	private String correctPass = "pass";
+	private String correctPass = "testpass";
 	private String incorrectUserId = "incorrect";
 	private String incorrectPass = "nopass";
-	private String errorMessageModelAttribute = "errorMessage";
-	private String errorMessage = "Incorrect credentials";
 	
 	@Autowired
 	private AuthenticationController authenticationController;
@@ -65,7 +64,7 @@ public class AuthenticationControllerUnitTest {
 		assertThat(retValue, equalTo(correctReturnHomePage));
 	}
 	
-	@Test
+	@Test(expected = BadCredentialsException.class)
 	public void testLoginUserWrongUserId() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		HttpSession mockHttpSession = new MockHttpSession();
@@ -73,12 +72,9 @@ public class AuthenticationControllerUnitTest {
 		user.setUserId(incorrectUserId);
 		user.setPassword(correctPass);
 		String retValue = authenticationController.loginUser(user, model, mockHttpSession);
-		assertThat(mockHttpSession.getAttribute(userSessionAttribute), equalTo(null));
-		assertThat((String) model.get(errorMessageModelAttribute), equalTo(errorMessage));
-		assertThat(retValue, equalTo(correctReturnLoginPage));
 	}
 	
-	@Test
+	@Test(expected = BadCredentialsException.class)
 	public void testLoginUserWrongPassword() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		HttpSession mockHttpSession = new MockHttpSession();
@@ -86,12 +82,9 @@ public class AuthenticationControllerUnitTest {
 		user.setUserId(correctUserId);
 		user.setPassword(incorrectPass);
 		String retValue = authenticationController.loginUser(user, model, mockHttpSession);
-		assertThat(mockHttpSession.getAttribute(userSessionAttribute), equalTo(null));
-		assertThat((String) model.get(errorMessageModelAttribute), equalTo(errorMessage));
-		assertThat(retValue, equalTo(correctReturnLoginPage));
 	}
 	
-	@Test
+	@Test(expected = BadCredentialsException.class)
 	public void testLoginUserWrongUserIdAndPassword() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		HttpSession mockHttpSession = new MockHttpSession();
@@ -99,9 +92,6 @@ public class AuthenticationControllerUnitTest {
 		user.setUserId(incorrectUserId);
 		user.setPassword(incorrectPass);
 		String retValue = authenticationController.loginUser(user, model, mockHttpSession);
-		assertThat(mockHttpSession.getAttribute(userSessionAttribute), equalTo(null));
-		assertThat((String) model.get(errorMessageModelAttribute), equalTo(errorMessage));
-		assertThat(retValue, equalTo(correctReturnLoginPage));
 	}
 
 }
