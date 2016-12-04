@@ -9,12 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DefaultController {
 
 	@RequestMapping(value = {"/home", "/"})
-<<<<<<< HEAD
 	public String displayHomePage(Map<String, Object> model) {
 		return "home";
-=======
-	public String displayHomePage(Model model) {
-			return "home";
->>>>>>> refs/remotes/origin/master
 	}
 }
