@@ -4,8 +4,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
+<!--
 <link rel="stylesheet" type="text/css" 
 	href='<c:url value="resources/css/base.css"/>'>
+-->
 <link rel="stylesheet" type="text/css"
 	href='<c:url value="resources/css/header.css"/>'>
 <spring:url value="/resources/images/" var="images" />
