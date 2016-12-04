@@ -6,6 +6,8 @@
 	--sqs-blue: #6496B8;						/* Light blue */
 	--dark-text-color: #404041;					/* Dark grey */
 	--light-text-color: var(--near-bg-color);	/* White */
+	--med-font: 48px;
+	--big-font: 64px;
 }
 
 * {
@@ -17,21 +19,23 @@ body {
 	background-color: var(--near-bg-color);
 	position: fixed;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	left: 0;
 	top: 0;
 	margin: 0;
+	margin-top: 131px;	/* toolbar container's height */
 	font-size: 32px;
-
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
+	
+	overflow-y: scroll;
 }
 
 .raised-button {
 	padding: 10px 20px;
-	background-color: var(--near-bg-color);
-	color: var(--sqs-green);
+	background-color: var(--sqs-green);
+	color: var(--near-bg-color);
 	border: 3px solid var(--sqs-green);
 	border-radius: 3px;
 	outline: 0;
@@ -39,8 +43,8 @@ body {
 }
 
 .raised-button:hover {
-	background-color: var(--sqs-green);
-	color: var(--near-bg-color);
+	background-color: var(--near-bg-color);
+	color: var(--sqs-green);
 }
 
 .raised-button:active {
@@ -54,20 +58,20 @@ body {
 
 .text-input {
 	width: 100%;
-	height: 30px;
 	border: none;
-	border-bottom: 3px solid var(--sqs-green);
+	border-bottom: 5px solid var(--sqs-green);
 	transition-duration: 0.25s;
+	font-size: var(--med-font);
 }
 
 .text-input:focus {
-	border-bottom: 3px solid var(--sqs-blue);
+	border-bottom: 5px solid var(--sqs-blue);
 	outline: 0;
 }
 
 hr {
-	border-top: 3px solid var(--sqs-green);
-	margin: 10px 5px 0 0;
+	border-top: 5px solid var(--sqs-green);
+	margin: 25px 0 10px 0;
 }
 
 .logo-container {
@@ -80,11 +84,11 @@ hr {
 }
 
 .column-container{
-	margin: 5px 0;
+	margin: 15px 0;
 }
 
 .column-container-bottom {
-	margin: 0 0 5px 0;
+	margin: 0 0 15px 0;
 }
 
 .main-container {
@@ -93,6 +97,7 @@ hr {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-tems: flex-start;
 }
 
 .content-container {
@@ -100,9 +105,9 @@ hr {
 }
 
 .big-font {
-	font-size: 64px;
+	font-size: var(--big-font);
 }
 
 .med-font {
-	font-size: 48px;
+	font-size: var(--med-font);
 }

@@ -4,24 +4,26 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
+<!--
 <link rel="stylesheet" type="text/css" 
-	href='<c:url value="resources/css/base.css"/>'>
+	href='<c:url value="resources/css/mobile/base.css"/>'>
+-->
 <link rel="stylesheet" type="text/css"
-	href='<c:url value="resources/css/header.css"/>'>
+	href='<c:url value="resources/css/mobile/header.css"/>'>
 <spring:url value="/resources/images/" var="images" />
 </head>
 <body>
 	<div class="header-container column-container">
 		<c:choose>
 			<c:when test="${user != null}">
-				<div class="greeting-container">Welcome back, ${user.userId}</div>
+				<div class="greeting-container column-container-bottom med-font">Welcome back, ${user.userId}.</div>
 			</c:when>
 			<c:otherwise>
-				<div class="greeting-container">Welcome To The SQS Training Website</div>
+				<div class="greeting-container column-container-bottom med-font">Welcome To The SQS Training Website</div>
 			</c:otherwise>
 		</c:choose>
 		<div id="logoContainer" class="logo-container">
-			<img src="${images}logo.png" alt="SQS Logo" class="logo"/>
+			<img src="${images}logo-big.png" alt="SQS Logo" class="logo"/>
 		</div>
 	</div>
 </body>

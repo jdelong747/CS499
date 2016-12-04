@@ -25,7 +25,7 @@
 				<div id="subscribePrompt" class="column-container">
 					Keep up to date,
 				</div>
-				<button onclick="location.href = 'subscribe';" id="subscribeLink" class="raised-button column-container">Subscribe to our list.</button>
+				<button onclick="location.href = 'subscribe';" id="subscribeLink" class="raised-button column-container">Subscribe to our email list</button>
 			</div>
 		</div>
 	</div>

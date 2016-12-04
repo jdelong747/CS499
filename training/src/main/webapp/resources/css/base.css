@@ -28,8 +28,8 @@ body {
 
 .raised-button {
 	padding: 10px 20px;
-	background-color: var(--near-bg-color);
-	color: var(--sqs-green);
+	background-color: var(--sqs-green);
+	color: var(--near-bg-color);
 	border: 3px solid var(--sqs-green);
 	border-radius: 3px;
 	outline: 0;
@@ -37,8 +37,8 @@ body {
 }
 
 .raised-button:hover {
-	background-color: var(--sqs-green);
-	color: var(--near-bg-color);
+	background-color: var(--near-bg-color);
+	color: var(--sqs-green);
 }
 
 .raised-button:active {

@@ -30,12 +30,6 @@
 					<input type="submit" value="Subscribe" class="raised-button column-container"/>
 				</div>
 			</form:form>
-			
-			Debug: Emails in database
-			<br>
-			<c:forEach var="email" items="${emails}">
-				${email.email}<br>
-			</c:forEach>
 		</div>
 	</div>
 </body>
