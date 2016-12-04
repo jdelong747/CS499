@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -31,20 +32,18 @@ public class AuthenticationController {
 	public String registerUser(@ModelAttribute("loginForm") User user, Map<String, Object> model,
 			HttpSession session) {
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUserId(), user.getPassword());
-		Authentication checkAuth = authenticationManager.authenticate(authentication);
-		if (checkAuth.isAuthenticated()) {
-			session.setAttribute("user", user);
-		} else {
-			model.put("errorMessage", "Incorrect credentials");
+		try {
+			Authentication checkAuth = authenticationManager.authenticate(authentication);
+		} catch (BadCredentialsException e) {
 			return "login";
 		}
+		session.setAttribute("user", user);
 		return "home";
 	}
 	
 	@RequestMapping("/logout")
 	public String logoutUser(Map<String, Object> model,
 			HttpSession session) {
-		session.removeAttribute("user");
 		return "home";
 	}
 }
