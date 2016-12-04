@@ -9,6 +9,6 @@ public class DefaultController {
 
 	@RequestMapping(value = {"/home", "/"})
 	public String displayHomePage(Model model) {
-		return "home";
+			return "home";
 	}
 }
