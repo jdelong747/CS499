@@ -6,7 +6,6 @@ import java.util.Map;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,51 +22,39 @@ public class SubscriptionController {
 	SessionFactory sessionFactory;
 
 	@RequestMapping("/subscribe")
-	public String displaySubscriptionPage(Map<String, Object> model, Device device) {
+	public String displaySubscriptionPage(Map<String, Object> model) {
 		EmailSub emailForm = new EmailSub();
 		model.put("emailForm", emailForm);
 		databaseDebug(model);
-		if (device.isMobile()) {
-			PhoneNumberSub phoneNumberForm = new PhoneNumberSub();
-			model.put("phoneNumberForm", phoneNumberForm);
-			return "mobile/subscribe";
-		} else {
-			return "subscribe";
-		}
+		PhoneNumberSub phoneNumberForm = new PhoneNumberSub();
+		model.put("phoneNumberForm", phoneNumberForm);
+		return "subscribe";
 	}
 	
 	@RequestMapping("/subscribeEmail")
 	public String subscribeEmail(@ModelAttribute("emailForm") EmailSub emailForm,
-			Map<String, Object> model, Device device) {
+			Map<String, Object> model) {
 		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("insert into EMAIL_SUB (email) values ('" + emailForm.getEmail() + "')");
 		query.executeUpdate();
 		databaseDebug(model);
 		EmailSub newEmailForm = new EmailSub();
 		model.put("emailForm", newEmailForm);
-		if (device.isMobile()) {
-			PhoneNumberSub newPhoneNumberForm = new PhoneNumberSub();
-			model.put("phoneNumberForm", newPhoneNumberForm);
-			return "mobile/subscribe";
-		} else {
-			return "subscribe";
-		}
+		PhoneNumberSub newPhoneNumberForm = new PhoneNumberSub();
+		model.put("phoneNumberForm", newPhoneNumberForm);
+		return "subscribe";
 	}
 	
 	@RequestMapping("/subscribePhoneNumber")
 	public String subscribePhoneNumber(@ModelAttribute("phoneNumberForm") PhoneNumberSub phoneNumberForm,
-			Map<String, Object> model, Device device) {
+			Map<String, Object> model) {
 		SQLQuery query = sessionFactory.getCurrentSession().createSQLQuery("insert into PHONE_SUB (phone_number) values ('" + phoneNumberForm.getPhoneNumber() + "')");
 		query.executeUpdate();
 		databaseDebug(model);
 		EmailSub newEmailForm = new EmailSub();
 		model.put("emailForm", newEmailForm);
-		if (device.isMobile()) {
-			PhoneNumberSub newPhoneNumberForm = new PhoneNumberSub();
-			model.put("phoneNumberForm", newPhoneNumberForm);
-			return "mobile/subscribe";
-		} else {
-			return "subscribe";
-		}
+		PhoneNumberSub newPhoneNumberForm = new PhoneNumberSub();
+		model.put("phoneNumberForm", newPhoneNumberForm);
+		return "subscribe";
 	}
 	
 	private void databaseDebug(Map<String, Object> model) {
