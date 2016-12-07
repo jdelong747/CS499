@@ -14,7 +14,7 @@
 	<div class="toolbar-container column-container">
 		<ul class="toolbar">
 			<li><a href="http://www.sqs.com">SQS</a></li>
-			<li><a href="home">Home</a></li>
+			<li><a href="">Home</a></li>
 			<c:choose>
 				<c:when test="${user != null}">
 					<li><a href="logout">Logout</a></li>
