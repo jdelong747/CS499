@@ -29,7 +29,7 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping("/loginUser")
-	public String registerUser(@ModelAttribute("loginForm") User user, Map<String, Object> model,
+	public String loginUser(@ModelAttribute("loginForm") User user, Map<String, Object> model,
 			HttpSession session) {
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUserId(), user.getPassword());
 		try {
